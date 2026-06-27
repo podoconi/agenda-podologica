@@ -3,15 +3,15 @@ export type EnvValidation = {
   missing: string[];
 };
 
-const REQUIRED_PUBLIC_VARS = [
-  "NEXT_PUBLIC_SUPABASE_URL",
-  "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-] as const;
-
 export function validatePublicEnv(): EnvValidation {
-  const missing = REQUIRED_PUBLIC_VARS.filter(
-    (key) => !process.env[key]
-  );
+  const missing: string[] = [];
+
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    missing.push("NEXT_PUBLIC_SUPABASE_URL");
+  }
+  if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    missing.push("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+  }
 
   return {
     valid: missing.length === 0,
