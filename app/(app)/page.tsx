@@ -1,6 +1,7 @@
 import { LayoutDashboard } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { SupabaseHealthCheck } from "@/src/components/feedback/supabase-health-check";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,23 @@ export default function HomePage() {
             Aquí se mostrará la agenda del día, pendientes de acción,
             seguimientos próximos y cobros pendientes.
           </p>
+        </CardContent>
+      </Card>
+
+      <Card className="border-dashed">
+        <CardHeader>
+          <CardTitle className="text-sm font-medium text-muted-foreground">
+            Estado de infraestructura
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-muted-foreground">Frontend:</span>
+            <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
+              Operativo
+            </Badge>
+          </div>
+          <SupabaseHealthCheck />
         </CardContent>
       </Card>
     </div>
